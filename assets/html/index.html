@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Launcher</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/index/styles.css">
+</head>
+
+<body>
+    <nav id="top-nav">
+        <div class="top">
+            <div class="pages">
+                <div class="item">HOME</div>
+                <div class="item">LIBRARY</div>
+                <div class="item">FRIENDS</div>
+            </div>
+
+            <div class="user">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-heart-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-chat-left-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                </svg>
+                <div class="user-info">
+                    <p class="username">
+                        DarrellVS#2345
+                    </p>
+                    <img src="../images/placeholders/profile-picture.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="search">
+                <input type="text" placeholder="Search my games...">
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-sliders" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z" />
+                    </svg>
+                </button>
+            </div>
+
+            <button onclick="showAddGameModal()">Add game</button>
+        </div>
+    </nav>
+
+    <nav id="side-nav">
+        <div class="dropdown-group">
+            <div class="button-wrapper">
+                <button class="dropdown-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-heart-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                    </svg> Favorites <span id="favorites-amount"></span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-caret-down-fill caret" viewBox="0 0 16 16">
+                        <path
+                            d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                    </svg>
+                </button>
+            </div>
+            <div class="dropdown-container" id="favorite-games-container">
+
+            </div>
+        </div>
+
+        <div class="dropdown-group">
+            <div class="button-wrapper">
+                <button class="dropdown-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-download" viewBox="0 0 16 16">
+                        <path
+                            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                        <path
+                            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                    </svg> Installed <span id="installed-amount"></span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-caret-down-fill caret" viewBox="0 0 16 16">
+                        <path
+                            d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                    </svg>
+                </button>
+            </div>
+            <div class="dropdown-container" id="installed-games-container">
+
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="top">
+            <div class="cover" id="game-cover">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" id="cover-favorite-icon"
+                    class="bi bi-heart-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                </svg>
+            </div>
+            <div class="info">
+                <h3 id="game-name"></h3>
+                <table class="play-info">
+                    <tr>
+                        <td class="key">You've played</td>
+                        <td class="value" id="playtime">35 h 36 min</td>
+                    </tr>
+                    <tr>
+                        <td class="key">Last played</td>
+                        <td class="value" id="last-played">Today</td>
+                    </tr>
+                </table>
+                <div class="controls">
+                    <button class="play-button" id="play-button" onclick="startGame(this)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-play-fill" viewBox="0 0 16 16">
+                            <path
+                                d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+                        </svg> Play
+                    </button>
+
+                    <button class="settings">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-gear-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="navigation">
+            <div class="item">
+                Game Page
+            </div>
+            <div class="item">
+                News
+            </div>
+            <div class="item">
+                Game Info
+            </div>
+            <div class="item">
+                Reviews
+            </div>
+            <div class="item">
+                Community
+            </div>
+            <div class="item">
+                Support
+            </div>
+        </div>
+        <div class="content">
+            <div class="left" id="left-content-column">
+                
+            </div>
+            <div class="right" id="right-content-column">
+                
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/index/game-handler.js"></script>
+    <script src="../js/index/add-game.js"></script>
+    <script src="../js/index/tooltip.js"></script>
+    <script src="../js/index/context-menu.js"></script>
+</body>
+
+</html>
